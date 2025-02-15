@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './components/header/header.component';
+import { PrimaryButtonComponent } from './components/primary-button/primary-button.component';
 
 @Component({
+  standalone: true,
   selector: 'app-root',
-  imports: [RouterOutlet],
-  template: `
-    <h1>Welcome to {{title}}!</h1>
+  imports: [HeaderComponent],
+  template: `<app-header/>
 
-    <router-outlet />
   `,
   styles: [],
 })
