@@ -1,21 +1,25 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { PrimaryButtonComponent } from '../primary-button/primary-button.component';
+import { CartService } from '../../services/cart.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'app-header',
-  imports: [PrimaryButtonComponent],
+  imports: [PrimaryButtonComponent,RouterLink],
   template: `
-    <div class='bg-green-400 px-4 py-3 shadow-md flex justify-between items-center'>
-      <span>My Store</span>
-      <app-primary-button label="Cart" (btnClicked)="showButtonClicked()"/>
-</div>
+    <div
+      class="bg-green-400 px-4 py-3 shadow-md flex justify-between items-center"
+    >
+      <button class="text-xl" routerLink="/">My Store</button>
+      <app-primary-button [label]="'Cart(' + cartService.cart().length + ')'" 
+      routerLink="/cart"
+      />
+    </div>
   `,
   styles: `
-  `
+  `,
 })
 export class HeaderComponent {
-  showButtonClicked(){
-    console.log("Button Clicked!")
-  }
+  cartService = inject(CartService);
 }
